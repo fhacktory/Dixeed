@@ -2,3 +2,8 @@ server/node_modules
 server/logs
 server/*.log
 server/npm-debug.log*
+
+client/node_modules
+client/logs
+client/*.log
+client/npm-debug.log*
