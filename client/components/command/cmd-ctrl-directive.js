@@ -10,7 +10,7 @@ component.directive('robotFhacktoryCmd', function () {
         scope: {},
         controllerAs: '$ctrl',
         bindToController: {
-            endPoint: '@',
+            endPoint: '=',
             action: '@'
         }
     };

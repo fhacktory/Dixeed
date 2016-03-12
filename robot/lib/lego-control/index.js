@@ -2,6 +2,13 @@
 
 var ev3dev = require('ev3dev-lang');
 
+exports.up = up;
+exports.down = down;
+exports.right = right;
+exports.left = left;
+
+///////////////////////////////////////////////////////////////
+
 var motorA = new ev3dev.Motor(ev3dev.OUTPUT_A);
 var motorB = new ev3dev.Motor(ev3dev.OUTPUT_B);
 
