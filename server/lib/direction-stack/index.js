@@ -8,8 +8,16 @@ global.votedValue = '';
 setInterval(vote, 2000);
 
 function vote() {
-    let winner = DIRECTIONS.UP;
+    let winner = '';
+    let previousAction = null;
     const election = {};
+
+    console.log('current stack : ' + global.bufferStack);
+    if (global.bufferStack.length === 0) {
+        global.votedValue = '';
+        return;
+    }
+
     election[DIRECTIONS.UP] = 0;
     election[DIRECTIONS.DOWN] = 0;
     election[DIRECTIONS.RIGHT] = 0;
@@ -21,10 +29,14 @@ function vote() {
     }
 
     for (let action in election) {
-        if (election[action] > election[winner]) {
+        if (previousAction && election[action] > election[previousAction]) {
             winner = action;
+        } else if (previousAction && election[action] <= election[previousAction]) {
+            winner = previousAction;
         }
+        previousAction = action;
     }
+
     global.votedValue = winner;
     console.log('voted value : ' + winner);
     global.bufferStack.length = 0;
