@@ -1,0 +1,56 @@
+.cmd-component {
+    display: inline-block;
+}
+
+.cmd-component-btn {
+    font-size: 5em;
+
+    font-family: 'Glyphicons Halflings';
+}
+
+.cmd-component-btn:hover {
+    text-decoration: none;
+}
+
+#arrowUp .cmd-component-btn:before {
+    content: "\e253";
+}
+
+#arrowDown .cmd-component-btn:before {
+    content: "\e252";
+}
+
+#arrowLeft .cmd-component-btn:before {
+    content: "\e251";
+}
+
+#arrowRight .cmd-component-btn:before {
+    content: "\e250";
+}
+
+#commandContainer {
+    width: 300px;
+}
+
+#arrowUp > .cmd-component {
+    width: 100%;
+    text-align: center;
+}
+
+#arrowDown > .cmd-component {
+    width: 100%;
+    text-align: center;
+}
+
+#arrowLeft > .cmd-component {
+    width: 50%;
+}
+
+#arrowRight > .cmd-component {
+    width: 50%;
+    text-align: right;
+}
+
+#arrowRight > .cmd-component {
+    margin-left: -.3em;
+}
