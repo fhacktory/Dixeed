@@ -1,6 +1,7 @@
 'use strict';
 
 var DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
+var legoControl = require('../lego-control');
 
 global.bufferStack = [];
 global.votedValue = '';
@@ -40,4 +41,6 @@ function vote() {
     global.votedValue = winner;
     console.log('voted value : ' + winner);
     global.bufferStack.length = 0;
+
+    legoControl[winner];
 }
