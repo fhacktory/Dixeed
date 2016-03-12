@@ -4,20 +4,22 @@ var http = require('http'),
     url = require('url'),
     legoControl = require('./lib/lego-control');
 
+legoControl.init();
+
 var server = http.createServer(function handleRequest(request, response) {
     var data = url.parse(request.url, true);
 
     switch(data.pathname) {
-        case '/up':
+        case '/up/':
             legoControl.up();
             break;
-        case '/down':
+        case '/down/':
             legoControl.down();
             break;
-        case '/right':
+        case '/right/':
             legoControl.right();
             break;
-        case '/left':
+        case '/left/':
             legoControl.left();
             break;
     }

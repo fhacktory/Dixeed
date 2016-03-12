@@ -1,16 +1,16 @@
 'use strict';
 
 var ev3dev = require('ev3dev-lang');
+var motorA;
+var motorB;
 
+exports.init = init;
 exports.up = up;
 exports.down = down;
 exports.right = right;
 exports.left = left;
 
 ///////////////////////////////////////////////////////////////
-
-var motorA = new ev3dev.Motor(ev3dev.OUTPUT_A);
-var motorB = new ev3dev.Motor(ev3dev.OUTPUT_B);
 
 // Prevent Node from exiting until motor is done
 var cancellationTokenA = setInterval(function() {
@@ -24,6 +24,21 @@ var cancellationTokenB = setInterval(function() {
         clearInterval(cancellationTokenB);
 }, 10);
 
+function init() {
+    motorA = new ev3dev.Motor(ev3dev.OUTPUT_A);
+    motorB = new ev3dev.Motor(ev3dev.OUTPUT_B);
+
+    // check if motors are connected
+    checkMotorConnected("A");
+    checkMotorConnected("B");
+    
+    // enable speed regulation an set motors speed
+    motorA.speedRegulationEnabled = 'on';
+    motorA.speedSp = 500;
+    motorB.speedRegulationEnabled = 'on';
+    motorB.speedSp = 500;
+}
+
 function checkMotorConnected (letter) {
     if (!"motor"+letter.connected) {
         console.error("No motor was found on port " + letter + ". Please connect a tacho motor and try again.");
@@ -36,12 +51,6 @@ function up() {
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
-
-    // enable speed regulation an set motors speed
-    motorA.speedRegulationEnabled = 'on';
-    motorA.speedSp = 500;
-    motorB.speedRegulationEnabled = 'on';
-    motorB.speedSp = 500;
 
     // set the amount of time the motor will run
     motorA.positionSp = 500;
@@ -65,12 +74,6 @@ function down() {
     checkMotorConnected("A");
     checkMotorConnected("B");
 
-    // enable speed regulation and set motors speed
-    motorA.speedRegulationEnabled = 'on';
-    motorA.speedSp = 500;
-    motorB.speedRegulationEnabled = 'on';
-    motorB.speedSp = 500;
-
     // set the amount of time the motor will run
     motorA.positionSp = -500;
     motorB.positionSp = -500;
@@ -92,12 +95,6 @@ function left() {
     checkMotorConnected("A");
     checkMotorConnected("B");
 
-    // enable speed regulation and set motors speed
-    motorA.speedRegulationEnabled = 'on';
-    motorA.speedSp = 500;
-    motorB.speedRegulationEnabled = 'on';
-    motorB.speedSp = 500;
-
     // set the amount of time the motor will run
     motorA.positionSp = 500;
     motorB.positionSp = -500;
@@ -118,12 +115,6 @@ function right() {
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
-
-    // enable speed regulation and set motors speed
-    motorA.speedRegulationEnabled = 'on';
-    motorA.speedSp = 500;
-    motorB.speedRegulationEnabled = 'on';
-    motorB.speedSp = 500;
 
     // set inverse polarity to move back
     motorB.polarity = 'inversed';
