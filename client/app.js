@@ -4,7 +4,9 @@
 var app = angular.module('robotFhacktory', [
     'ngRoute',
     'ngAnimate',
-    'ui.router'
+    'ngResource',
+    'ui.router',
+    'robotFhacktory.component.command'
 ]);
 
 app.run(Startup)

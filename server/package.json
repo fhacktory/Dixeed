@@ -4,6 +4,7 @@
   "description": "IRL rocket league streamed on Twitch MMORPG",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +25,7 @@
   "dependencies": {
     "ev3dev-lang": "^0.9.4",
     "hapi": "^12.1.0",
+    "joi": "^8.0.4",
     "q": "^1.4.1"
   }
 }
