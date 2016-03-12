@@ -18,6 +18,7 @@ server.connection({
 //                                                                //
 ////////////////////////////////////////////////////////////////////
 server.register([
+    require('./lib/lego-endpoints')
 ])
 
 /////////////////////////////////////////////////////////////////////////
@@ -26,7 +27,7 @@ server.register([
 //                                                                     //
 /////////////////////////////////////////////////////////////////////////
 .then(function () {
-    
+
 })
 .catch(function (err) {
     console.error('Failed to load a plugin: ', err);
@@ -42,7 +43,7 @@ server.register([
     return server.start();
 })
 .then(function() {
-    console.log('Server started on port : [' + config.get('/server/port') + ']');
+    console.log('Server started on port : [8990]');
 })
 .catch(function(err) {
     console.error('Started server with errors: ' + err);
