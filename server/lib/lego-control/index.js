@@ -37,6 +37,7 @@ function up() {
     motorB.speedSp = 500;
 
     // set the amount of time the motor will run
+    console.log(motorB.positionSp+" "+motorA.positionSp);
     motorA.positionSp = 500;
     motorB.positionSp = 500;
 

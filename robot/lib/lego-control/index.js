@@ -31,7 +31,7 @@ function init() {
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
-    
+
     // enable speed regulation an set motors speed
     motorA.speedRegulationEnabled = 'on';
     motorA.speedSp = 500;
@@ -52,6 +52,7 @@ function up() {
     checkMotorConnected("A");
     checkMotorConnected("B");
 
+    console.log(motorB.positionSp+" "+motorA.positionSp);
     // set the amount of time the motor will run
     motorA.positionSp = 500;
     motorB.positionSp = 500;
@@ -73,7 +74,7 @@ function down() {
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
-
+    console.log(motorB.positionSp+" "+motorA.positionSp);
     // set the amount of time the motor will run
     motorA.positionSp = -500;
     motorB.positionSp = -500;
@@ -94,7 +95,7 @@ function left() {
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
-
+    console.log(motorB.positionSp+" "+motorA.positionSp);
     // set the amount of time the motor will run
     motorA.positionSp = 500;
     motorB.positionSp = -500;
@@ -116,9 +117,7 @@ function right() {
     checkMotorConnected("A");
     checkMotorConnected("B");
 
-    // set inverse polarity to move back
-    motorB.polarity = 'inversed';
-
+    console.log(motorB.positionSp+" "+motorA.positionSp);
     // set the amount of time the motor will run
     motorA.positionSp = -500;
     motorB.positionSp = 500;
