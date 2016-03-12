@@ -3,8 +3,6 @@
 }
 
 .cmd-component-btn {
-    margin-top: 5px;
-    margin-bottom: 10px;
     font-size: 5em;
 
     font-family: 'Glyphicons Halflings';
@@ -15,19 +13,19 @@
 }
 
 #arrowUp .cmd-component-btn:before {
-    content: "\e093";
+    content: "\e253";
 }
 
 #arrowDown .cmd-component-btn:before {
-    content: "\e094";
+    content: "\e252";
 }
 
 #arrowLeft .cmd-component-btn:before {
-    content: "\e091";
+    content: "\e251";
 }
 
 #arrowRight .cmd-component-btn:before {
-    content: "\e092";
+    content: "\e250";
 }
 
 #commandContainer {
@@ -40,20 +38,19 @@
 }
 
 #arrowDown > .cmd-component {
-    width: 33%;
+    width: 100%;
     text-align: center;
 }
 
 #arrowLeft > .cmd-component {
-    width: 33%;
+    width: 50%;
 }
 
 #arrowRight > .cmd-component {
-    width: 33%;
+    width: 50%;
     text-align: right;
 }
 
-#arrowDown > .cmd-component,
 #arrowRight > .cmd-component {
-    margin-left: -.2em;
+    margin-left: -.3em;
 }

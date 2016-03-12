@@ -6,6 +6,7 @@ var app = angular.module('robotFhacktory', [
     'ngAnimate',
     'ngResource',
     'ui.router',
+    'ui.bootstrap',
     'robotFhacktory.component.command'
 ]);
 
@@ -29,7 +30,25 @@ function Router($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: '/',
-            templateUrl: 'views/home/home.html'
+            templateUrl: 'views/home/home.html',
+            controllerAs: '$ctrl',
+            bindToController: {
+                team: '@'
+            },
+            controller: function () {
+                // if ($window.localStorage['team-blue'] == null) {
+                //     $window.localStorage['team-blue'] = 0;
+                // }
+
+                // if ($window.localStorage['team-red'] == null) {
+                //     $window.localStorage['team-red'] = 0;
+                // }
+
+                // var blue = $window.localStorage['team-blue'];
+                // var red = $window.localStorage['team-red'];
+                
+                // this.team =
+            }
         })
         .state('notFound', {
             url: '/not-found',
