@@ -1,13 +1,26 @@
 {
   "name": "fhacktory-dixeed-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "IRL rocket league streamed on Twitch MMORPG",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fhacktory/Dixeed.git"
+  },
+  "keywords": [
+    "nodejs",
+    "hapi",
+    "rocket-league"
+  ],
   "license": "MIT",
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/fhacktory/Dixeed/issues"
+  },
+  "homepage": "https://github.com/fhacktory/Dixeed#readme",
   "dependencies": {
     "ev3dev-lang": "^0.9.4",
     "hapi": "^12.1.0",
