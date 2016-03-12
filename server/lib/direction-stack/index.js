@@ -1,7 +1,7 @@
 'use strict';
 
+const request = require('request');
 var DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
-var legoControl = require('../lego-control');
 
 global.bufferStack = [];
 global.votedValue = '';
@@ -42,5 +42,11 @@ function vote() {
     console.log('voted value : ' + winner);
     global.bufferStack.length = 0;
 
-    legoControl[winner];
+    sendToRobot(winner);
+}
+
+function sendToRobot(action) {
+    request('http://192.168.1.50/' + action + '/', function(error, response, body) {
+        console.log('request sent to ' + action);
+    });
 }
