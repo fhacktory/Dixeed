@@ -1,25 +1,29 @@
 'use strict';
 
 var http = require('http'),
-    url = require('url');
+    url = require('url'),
+    legoControl = require('./lib/lego-control');
 
 var server = http.createServer(function handleRequest(request, response) {
     var data = url.parse(request.url, true);
 
     switch(data.pathname) {
-        case 'forward':
-
+        case 'up':
+            legoControl.up();
             break;
-        case 'backward':
-
+        case 'down':
+            legoControl.down();
             break;
-        case 'turnleft':
-
+        case 'right':
+            legoControl.right();
             break;
-        case 'turnright':
-            
+        case 'left':
+            legoControl.left();
             break;
     }
+
+    response.write(200);
+    response.end('coucou');
 });
 
 server.listen(8880, function() {
