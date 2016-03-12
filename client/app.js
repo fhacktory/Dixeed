@@ -31,27 +31,38 @@ function Router($stateProvider, $urlRouterProvider) {
         .state('home', {
             url: '/',
             templateUrl: 'views/home/home.html',
-            controllerAs: '$ctrl',
-            bindToController: {
-                team: '@'
+            controllerAs: '$homeCtrl',
+            scope: {
+                team: '='
             },
-            controller: function () {
-                // if ($window.localStorage['team-blue'] == null) {
-                //     $window.localStorage['team-blue'] = 0;
-                // }
-
-                // if ($window.localStorage['team-red'] == null) {
-                //     $window.localStorage['team-red'] = 0;
-                // }
-
-                // var blue = $window.localStorage['team-blue'];
-                // var red = $window.localStorage['team-red'];
-                
-                // this.team =
-            }
+            bindToController: true,
+            controller: 'robotFhacktoryHomeCtrl'
+        })
+        .state('about', {
+            url: '/about',
+            templateUrl: 'views/about/about.html'
         })
         .state('notFound', {
             url: '/not-found',
             templateUrl: 'views/errors/404.html'
         });
+}
+
+app.controller('robotFhacktoryHomeCtrl', RobotFhacktoryHomeCtrl);
+
+function RobotFhacktoryHomeCtrl () {
+    this.teams = [
+        {
+            id: 1,
+            label: 'Rouge',
+            url: 'http://localhost:8990/move'
+        },
+        {
+            id: 2,
+            label: 'Bleue',
+            url: 'http://localhost:8990/move'
+        }
+    ]
+
+    this.team = this.teams[0];
 }
