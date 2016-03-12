@@ -1,5 +1,5 @@
 {
-  "name": "rocket-server",
+  "name": "fhacktory-dixeed-server",
   "version": "1.0.0",
   "description": "IRL rocket league streamed on Twitch MMORPG",
   "main": "index.js",
@@ -15,10 +15,15 @@
     "hapi",
     "rocket-league"
   ],
-  "author": "Nargonath",
   "license": "MIT",
+  "author": "",
   "bugs": {
     "url": "https://github.com/fhacktory/Dixeed/issues"
   },
-  "homepage": "https://github.com/fhacktory/Dixeed#readme"
+  "homepage": "https://github.com/fhacktory/Dixeed#readme",
+  "dependencies": {
+    "ev3dev-lang": "^0.9.4",
+    "hapi": "^12.1.0",
+    "q": "^1.4.1"
+  }
 }
