@@ -1,6 +1,7 @@
 'use strict';
 
-const DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
+var DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
+var legoControl = require('../lego-control');
 
 global.bufferStack = [];
 global.votedValue = '';
@@ -8,9 +9,9 @@ global.votedValue = '';
 setInterval(vote, 2000);
 
 function vote() {
-    let winner = '';
-    let previousAction = null;
-    const election = {};
+    var winner = '';
+    var previousAction = null;
+    var election = {};
 
     console.log('current stack : ' + global.bufferStack);
     if (global.bufferStack.length === 0) {
@@ -23,15 +24,15 @@ function vote() {
     election[DIRECTIONS.RIGHT] = 0;
     election[DIRECTIONS.LEFT] = 0;
 
-    for (let voteCnt = 0; voteCnt < global.bufferStack.length; voteCnt++) {
-        const value = global.bufferStack[voteCnt];
+    for (var voteCnt = 0; voteCnt < global.bufferStack.length; voteCnt++) {
+        var value = global.bufferStack[voteCnt];
         election[value]++;
     }
 
-    for (let action in election) {
+    for (var action in election) {
         if (previousAction && election[action] > election[previousAction]) {
             winner = action;
-        } else if (previousAction && election[action] <= election[previousAction]) {
+        } else if (previousAction && election[action] < election[previousAction]) {
             winner = previousAction;
         }
         previousAction = action;
@@ -40,4 +41,6 @@ function vote() {
     global.votedValue = winner;
     console.log('voted value : ' + winner);
     global.bufferStack.length = 0;
+
+    legoControl[winner];
 }
