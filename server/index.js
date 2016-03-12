@@ -1,7 +1,7 @@
 'use strict';
 
-const Hapi = require('hapi');
-const server = new Hapi.Server();
+var Hapi = require('hapi');
+var server = new Hapi.Server();
 require('./lib/direction-stack');
 
 module.exports = server;

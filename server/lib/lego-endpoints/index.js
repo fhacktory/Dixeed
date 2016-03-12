@@ -1,8 +1,8 @@
 'use strict';
 
-const handlers = require('./handlers');
-const Joi = require('joi');
-const DIRECTIONS = require('./constant').DIRECTIONS;
+var handlers = require('./handlers');
+var Joi = require('joi');
+var DIRECTIONS = require('./constant').DIRECTIONS;
 
 module.exports = function register(server, options, next) {
     server.route({
