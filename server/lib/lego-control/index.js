@@ -24,27 +24,25 @@ function up() {
     checkMotorConnected("A");
     checkMotorConnected("B");
 
-    // enable speed regulation
+    // enable speed regulation an set motors speed
     motorA.speedRegulationEnabled = 'on';
-    motorB.speedRegulationEnabled = 'on';
-
-    // set motors speed
     motorA.speedSp = 500;
+    motorB.speedRegulationEnabled = 'on';
     motorB.speedSp = 500;
 
     // set the amount of time the motor will run
-    motorA.timeSp = 400;
-    motorB.timeSp = 400;
+    motorA.positionSp = 500;
+    motorB.positionSp = 500;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
     motorB.stopCommand = 'brake';
 
     // run the motor for the amount of time specified in `time_sp`
-    motorA.command = "run-timed";
-    motorB.command = "run-timed";
+    motorA.command = "run-to-rel-pos";
+    motorB.command = "run-to-rel-pos";
 
-    console.log("Running forward the motors A and B for 4 sec ...");
+    console.log(" Running forward the motors A and B for 180 tacho counts... ");
 
 }
 
@@ -60,23 +58,19 @@ function down() {
     motorB.speedRegulationEnabled = 'on';
     motorB.speedSp = 500;
 
-    // set inverse polarity to move back
-    motorA.polarity = 'inversed';
-    motorB.polarity = 'inversed';
-
     // set the amount of time the motor will run
-    motorA.timeSp = 400;
-    motorB.timeSp = 400;
+    motorA.positionSp = -500;
+    motorB.positionSp = -500;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
     motorB.stopCommand = 'brake';
 
     // use var positionSp
-    motorA.command = "run-timed";
-    motorB.command = "run-timed";
+    motorA.command = "run-to-rel-pos";
+    motorB.command = "run-to-rel-pos";
 
-    console.log("Running back the motors A and B for 4 sec ...");
+    console.log("Running back the motors A and B for 180 tacho counts...");
 }
 
 function left() {
@@ -91,22 +85,19 @@ function left() {
     motorB.speedRegulationEnabled = 'on';
     motorB.speedSp = 500;
 
-    // set inverse polarity to move back
-    motorA.polarity = 'inversed';
-
     // set the amount of time the motor will run
-    motorA.timeSp = 400;
-    motorB.timeSp = 400;
+    motorA.positionSp = 500;
+    motorB.positionSp = -500;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
     motorB.stopCommand = 'brake';
 
     // use var positionSp
-    motorA.command = "run-timed";
-    motorB.command = "run-timed";
+    motorA.command = "run-to-rel-pos";
+    motorB.command = "run-to-rel-pos";
 
-    console.log("Running back the motors A and B for 4 sec ...");
+    console.log("Turn to the left");
 
 }
 
@@ -125,17 +116,17 @@ function right() {
     motorB.polarity = 'inversed';
 
     // set the amount of time the motor will run
-    motorA.timeSp = 400;
-    motorB.timeSp = 400;
+    motorA.positionSp = -500;
+    motorB.positionSp = 500;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
     motorB.stopCommand = 'brake';
 
     // use var positionSp
-    motorA.command = "run-timed";
-    motorB.command = "run-timed";
+    motorA.command = "run-to-rel-pos";
+    motorB.command = "run-to-rel-pos";
 
-    console.log("Running back the motors A and B for 4 sec ...");
+    console.log("Turn to the right ...");
 
 }
