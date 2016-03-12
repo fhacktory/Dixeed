@@ -6,9 +6,15 @@ var motorA = new ev3dev.Motor(ev3dev.OUTPUT_A);
 var motorB = new ev3dev.Motor(ev3dev.OUTPUT_B);
 
 // Prevent Node from exiting until motor is done
-var cancellationToken = setInterval(function() {
-    if(motor.state.indexOf("running") == -1)
-        clearInterval(cancellationToken);
+var cancellationTokenA = setInterval(function() {
+    if(motorA.state.indexOf("running") == -1)
+        clearInterval(cancellationTokenA);
+}, 10);
+
+// Prevent Node from exiting until motor is done
+var cancellationTokenB = setInterval(function() {
+    if(motorB.state.indexOf("running") == -1)
+        clearInterval(cancellationTokenB);
 }, 10);
 
 function checkMotorConnected (letter) {
