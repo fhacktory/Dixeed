@@ -7,3 +7,5 @@ client/node_modules
 client/logs
 client/*.log
 client/npm-debug.log*
+
+dist/*
