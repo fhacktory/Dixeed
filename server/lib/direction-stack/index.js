@@ -46,7 +46,7 @@ function vote() {
 }
 
 function sendToRobot(action) {
-    request('http://192.168.1.50/' + action + '/', function(error, response, body) {
+    request('http://192.168.1.50:8880/' + action + '/', function(error, response, body) {
         console.log('request sent to ' + action);
     });
 }
