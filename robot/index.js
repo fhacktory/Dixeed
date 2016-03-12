@@ -8,22 +8,21 @@ var server = http.createServer(function handleRequest(request, response) {
     var data = url.parse(request.url, true);
 
     switch(data.pathname) {
-        case 'up':
+        case '/up':
             legoControl.up();
             break;
-        case 'down':
+        case '/down':
             legoControl.down();
             break;
-        case 'right':
+        case '/right':
             legoControl.right();
             break;
-        case 'left':
+        case '/left':
             legoControl.left();
             break;
     }
 
-    response.write(200);
-    response.end('coucou');
+    response.end('Coucou');
 });
 
 server.listen(8880, function() {
