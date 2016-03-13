@@ -1,7 +1,8 @@
 'use strict';
 
 const request = require('request');
-var DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
+const DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
+const ACTIONS = require('../lego-endpoints/constant').ACTIONS;
 
 global.bufferStack = [];
 global.votedValue = '';
@@ -22,6 +23,7 @@ function vote() {
     election[DIRECTIONS.DOWN] = 0;
     election[DIRECTIONS.RIGHT] = 0;
     election[DIRECTIONS.LEFT] = 0;
+    election[ACTIONS.ARM] = 0;
 
     for (let voteCnt = 0; voteCnt < global.bufferStack.length; voteCnt++) {
         const value = global.bufferStack[voteCnt];

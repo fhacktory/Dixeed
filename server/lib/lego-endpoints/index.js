@@ -1,14 +1,15 @@
 'use strict';
 
-var handlers = require('./handlers');
-var Joi = require('joi');
-var DIRECTIONS = require('./constant').DIRECTIONS;
+const handlers = require('./handlers');
+const Joi = require('joi');
+const DIRECTIONS = require('./constant').DIRECTIONS;
+const ACTIONS = require('./constant').ACTIONS;
 
 module.exports = function register(server, options, next) {
     server.route({
         method: 'POST',
         path: '/move',
-        handler: handlers.move,
+        handler: handlers.action,
         config: {
             validate: {
                 payload: {
@@ -17,6 +18,21 @@ module.exports = function register(server, options, next) {
                         DIRECTIONS.DOWN,
                         DIRECTIONS.LEFT,
                         DIRECTIONS.RIGHT
+                    ]).options({ convert: true })
+                }
+            }
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/action',
+        handler: handlers.action,
+        config: {
+            validate: {
+                payload: {
+                    action: Joi.string().required().lowercase().valid([
+                        ACTIONS.ARM
                     ]).options({ convert: true })
                 }
             }

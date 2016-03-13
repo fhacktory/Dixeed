@@ -4,5 +4,8 @@
         "DOWN": "down",
         "LEFT": "left",
         "RIGHT": "right"
+    },
+    "ACTIONS": {
+        "ARM": "arm"
     }
 }
