@@ -44,6 +44,10 @@ function vote() {
     sendToRobot(winner);
 }
 
+function anarchie () {
+    sendToRobot(global.bufferStack[Math.floor((Math.random() * global.bufferStack.length) + 1)]);
+}
+
 function sendToRobot(action) {
     const host = 'http://192.168.1.50:8880/' + action + '/';
     request(host, function(error, response, body) {
