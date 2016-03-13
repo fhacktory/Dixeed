@@ -30,10 +30,11 @@ function init() {
 
     motorA = new ev3dev.Motor(ev3dev.OUTPUT_A);
     motorB = new ev3dev.Motor(ev3dev.OUTPUT_B);
-
+    motorC = new ev3dev.Motor(ev3dev.OUTPUT_C);
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
+    checkMotorConnected("C");
 
     // reset motors positions
     motorA.reset();
@@ -44,6 +45,7 @@ function init() {
     motorA.speedRegulationEnabled = 'on';
     motorB.speedRegulationEnabled = 'on';
     motorC.speedRegulationEnabled = 'on';
+
     motorA.speedSp = 500;
     motorB.speedSp = 500;
     motorC.speedSp = 500;
@@ -57,9 +59,6 @@ function checkMotorConnected (letter) {
 }
 
 function arm() {
-
-    // check if motors are connected
-    checkMotorConnected("C");
 
     // set the amount of time the motor will run
     motorC.positionSp = 100;
