@@ -1,4 +1,27 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+
+    border-top: 1px solid #e7e7e7;
+}
+
+.footer .text-muted {
+    text-align: center;
+    margin: 20px 0;
+}
+
 body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
     padding-top: 50px;
 }
 
@@ -16,7 +39,9 @@ body > .container {
     display: inline-block;
 }
 
-.cmd-component-btn:hover {
+.cmd-component-btn:hover,
+.cmd-component-btn:visited,
+.cmd-component-btn:focus {
     text-decoration: none;
 }
 
@@ -66,11 +91,15 @@ body > .container {
     height: 100%;
 }
 
-.cmd-component-btn.cmd-blue {
+.cmd-red {
+    border-color: red !important;
+}
+
+.cmd-blue > .cmd-component-btn {
     color: #337ab7;
 }
 
-.cmd-component-btn.cmd-red {
+.cmd-red > .cmd-component-btn {
     color: red;
 }
 
