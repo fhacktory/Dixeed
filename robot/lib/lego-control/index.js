@@ -22,15 +22,14 @@ function init() {
     motorB = new ev3dev.Motor(ev3dev.OUTPUT_B);
     motorC = new ev3dev.Motor(ev3dev.OUTPUT_C);
 
-    // check if motors are connected
-    checkMotorConnected("A");
-    checkMotorConnected("B");
-    checkMotorConnected("C");
-
-    // reset motors positions
     motorA.reset();
     motorB.reset();
     motorC.reset();
+
+    // cheCck if motors are connected
+    checkMotorConnected("A");
+    checkMotorConnected("B");
+    checkMotorConnected("C");
 
     // enable speed regulation an set motors speed
     motorA.speedRegulationEnabled = 'on';
@@ -52,17 +51,23 @@ function checkMotorConnected (letter) {
 }
 
 function arm() {
-
     // set the amount of time the motor will run
-    motorC.positionSp = 100;
-
+    motorC.positionSp = -20;
     // stop all previous command
     motorC.stopCommand = 'brake';
-
     // run the motor for the amount of time specified in `time_sp`
     motorC.command = "run-to-rel-pos";
 
-    console.log("Turn arm");
+    setTimeout(function() {
+        // set the amount of time the motor will run
+        motorC.positionSp = 0;
+        // stop all previous command
+        motorC.stopCommand = 'hold';
+        // run the motor for the amount of time specified in `time_sp`
+        motorC.command = "run-to-abs-pos";
+    }, 1000);
+
+    console.log("activate arm");
 
 }
 
