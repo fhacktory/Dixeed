@@ -1,6 +1,8 @@
 'use strict';
 
 var ev3dev = require('ev3dev-lang');
+
+// declare variables motors
 var motorA;
 var motorB;
 var motorC;
@@ -14,23 +16,12 @@ exports.arm = arm;
 
 ///////////////////////////////////////////////////////////////
 
-// Prevent Node from exiting until motor is done
-var cancellationTokenA = setInterval(function() {
-    if(motorA.state.indexOf("running") == -1)
-        clearInterval(cancellationTokenA);
-}, 10);
-
-// Prevent Node from exiting until motor is done
-var cancellationTokenB = setInterval(function() {
-    if(motorB.state.indexOf("running") == -1)
-        clearInterval(cancellationTokenB);
-}, 10);
-
 function init() {
 
     motorA = new ev3dev.Motor(ev3dev.OUTPUT_A);
     motorB = new ev3dev.Motor(ev3dev.OUTPUT_B);
     motorC = new ev3dev.Motor(ev3dev.OUTPUT_C);
+
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
@@ -49,7 +40,9 @@ function init() {
     motorA.speedSp = 500;
     motorB.speedSp = 500;
     motorC.speedSp = 500;
+
 }
+
 
 function checkMotorConnected (letter) {
     if (!"motor"+letter.connected) {
@@ -75,11 +68,6 @@ function arm() {
 
 function up() {
 
-    // check if motors are connected
-    checkMotorConnected("A");
-    checkMotorConnected("B");
-
-
     // set the amount of time the motor will run
     motorA.positionSp = 500;
     motorB.positionSp = 500;
@@ -98,10 +86,6 @@ function up() {
 
 function down() {
 
-    // check if motors are connected
-    checkMotorConnected("A");
-    checkMotorConnected("B");
-
     // set the amount of time the motor will run
     motorA.positionSp = -500;
     motorB.positionSp = -500;
@@ -119,13 +103,9 @@ function down() {
 
 function left() {
 
-    // check if motors are connected
-    checkMotorConnected("A");
-    checkMotorConnected("B");
-
     // set the amount of time the motor will run
-    motorA.positionSp = -650;
-    motorB.positionSp = 650;
+    motorA.positionSp = -325;
+    motorB.positionSp = 325;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
@@ -140,14 +120,10 @@ function left() {
 }
 
 function right() {
-    // check if motors are connected
-    checkMotorConnected("A");
-    checkMotorConnected("B");
-
 
     // set the amount of time the motor will run
-    motorA.positionSp = 650;
-    motorB.positionSp = -650;
+    motorA.positionSp = 325;
+    motorB.positionSp = -325;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
@@ -158,5 +134,4 @@ function right() {
     motorB.command = "run-to-rel-pos";
 
     console.log("Turn to the right ...");
-
 }

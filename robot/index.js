@@ -26,7 +26,6 @@ var server = http.createServer(function handleRequest(request, response) {
             legoControl.arm();
             break;
     }
-
     response.end('Coucou');
 });
 
