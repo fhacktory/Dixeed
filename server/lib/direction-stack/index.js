@@ -56,7 +56,7 @@ function voteRand() {
     console.log('rand voted value : ' + winner);
     global.bufferTeam1.length = 0;
 
-    sentToRobot('http://10.0.0.27:8880/', winner);
+    sendToRobot('http://10.0.0.27:8880/', winner);
 }
 
 function getRandomNumber(min, max) {
