@@ -47,16 +47,19 @@ function voteDemo() {
 
 function voteRand() {
     console.log('rand stack : ' + global.bufferTeam1);
-
+    if (global.bufferTeam1.length === 0) {
+        return;
+    }
+    
     let randInteger = getRandomNumber(0, global.bufferTeam2.length);
     const winner = global.bufferTeam2[randInteger];
     console.log('rand voted value : ' + winner);
 
-    sentToRobot('', winner);
+    // sentToRobot('', winner);
 }
 
 function getRandomNumber(min, max) {
-    return Math.random() * (max - min) + min;
+    return Math.floor(Math.random() * (max - min) + min);
 }
 
 function sendToRobot(hostStr, action) {
