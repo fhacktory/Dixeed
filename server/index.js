@@ -9,7 +9,7 @@ module.exports = server;
 /////////////////////////////////////////////////////////////////////////
 
 server.connection({
-    host: 'localhost',
+    host: '192.168.1.39',
     port: '8990',
     routes: {
         cors: true
