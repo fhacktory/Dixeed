@@ -11,7 +11,8 @@ component.directive('robotFhacktoryCmd', function () {
         controllerAs: '$ctrl',
         bindToController: {
             endPoint: '=',
-            action: '@'
+            action: '@',
+            content: '@?'
         }
     };
 });

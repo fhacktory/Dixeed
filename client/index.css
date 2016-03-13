@@ -6,14 +6,10 @@ body > .container {
     margin-top: 2em;
 }
 
-.cmd-component {
-    display: inline-block;
-}
-
 .cmd-component-btn {
     font-size: 5em;
-
     font-family: 'Glyphicons Halflings';
+    display: inline-block;
 }
 
 .cmd-component-btn:hover {
@@ -36,29 +32,32 @@ body > .container {
     content: "\e250";
 }
 
-#commandContainer {
-    width: 300px;
-}
-
-#arrowUp > .cmd-component {
-    width: 100%;
-    text-align: center;
-}
-
+#arrowUp > .cmd-component,
 #arrowDown > .cmd-component {
-    width: 100%;
     text-align: center;
-}
-
-#arrowLeft > .cmd-component {
-    width: 50%;
 }
 
 #arrowRight > .cmd-component {
-    width: 50%;
     text-align: right;
 }
 
-#arrowRight > .cmd-component {
-    margin-left: -.3em;
+#arrowUp .cmd-component-btn {
+    margin-bottom: -.5em;
+}
+
+#arrowDown .cmd-component-btn {
+    margin-top: -.2em;
+}
+
+#aButton > .cmd-component {
+    border: .3em solid #337ab7;
+    text-align: center;
+
+    border-radius: 5em;
+}
+
+#aButton .cmd-component-btn {
+    margin-top: -.2em;
+    width: 100%;
+    height: 100%;
 }

@@ -54,13 +54,11 @@ function RobotFhacktoryHomeCtrl () {
     this.teams = [
         {
             id: 1,
-            label: 'Rouge',
-            url: 'http://localhost:8990/move'
+            label: 'Rouge'
         },
         {
             id: 2,
-            label: 'Bleue',
-            url: 'http://localhost:8990/move'
+            label: 'Bleue'
         }
     ]
 
