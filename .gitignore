@@ -8,4 +8,7 @@ client/logs
 client/*.log
 client/npm-debug.log*
 
+robots/robot_rouge/node_modules
+robots/robot_bleu/node_modules
+
 dist/*

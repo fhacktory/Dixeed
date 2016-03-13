@@ -38,7 +38,7 @@ function init() {
 
     motorA.speedSp = 500;
     motorB.speedSp = 500;
-    motorC.speedSp = 500;
+    motorC.speedSp = 1000;
 
 }
 
@@ -52,7 +52,7 @@ function checkMotorConnected (letter) {
 
 function arm() {
     // set the amount of time the motor will run
-    motorC.positionSp = -20;
+    motorC.positionSp = 50;
     // stop all previous command
     motorC.stopCommand = 'brake';
     // run the motor for the amount of time specified in `time_sp`
@@ -74,8 +74,8 @@ function arm() {
 function up() {
 
     // set the amount of time the motor will run
-    motorA.positionSp = 500;
-    motorB.positionSp = 500;
+    motorA.positionSp = -500;
+    motorB.positionSp = -500;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
@@ -92,8 +92,8 @@ function up() {
 function down() {
 
     // set the amount of time the motor will run
-    motorA.positionSp = -500;
-    motorB.positionSp = -500;
+    motorA.positionSp = 500;
+    motorB.positionSp = 500;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
@@ -109,8 +109,8 @@ function down() {
 function left() {
 
     // set the amount of time the motor will run
-    motorA.positionSp = -325;
-    motorB.positionSp = 325;
+    motorA.positionSp = -400;
+    motorB.positionSp = 400;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
@@ -127,8 +127,8 @@ function left() {
 function right() {
 
     // set the amount of time the motor will run
-    motorA.positionSp = 325;
-    motorB.positionSp = -325;
+    motorA.positionSp = 400;
+    motorB.positionSp = -400;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
