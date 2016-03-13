@@ -7,11 +7,18 @@ var app = angular.module('robotFhacktory', [
     'ngResource',
     'ui.router',
     'ui.bootstrap',
+    'cfp.hotkeys',
     'robotFhacktory.component.command'
 ]);
 
 app.run(Startup)
    .config(Router);
+
+app.controller('robotFhacktoryHomeCtrl', RobotFhacktoryHomeCtrl);
+app.controller('robotFhacktoryChgTeamCtrl', RobotFhacktoryChgTeamCtrl);
+
+RobotFhacktoryHomeCtrl.$inject = [ '$uibModal' ];
+RobotFhacktoryChgTeamCtrl.$inject = [ '$scope', '$uibModalInstance', 'teams' ];
 
 Startup.$inject = [ '$rootScope', '$state', '$stateParams' ];
 Router.$inject = [ '$stateProvider', '$urlRouterProvider' ];
@@ -48,19 +55,55 @@ function Router($stateProvider, $urlRouterProvider) {
         });
 }
 
-app.controller('robotFhacktoryHomeCtrl', RobotFhacktoryHomeCtrl);
-
-function RobotFhacktoryHomeCtrl () {
+function RobotFhacktoryHomeCtrl ($uibModal) {
     this.teams = [
         {
             id: 1,
-            label: 'Rouge'
+            label: 'Rouge',
+            customClass: 'cmd-red',
+            desc: 'Le mode de décision est anarchique. Une des commandes demandées sera tirée au hasard.'
         },
         {
             id: 2,
-            label: 'Bleue'
+            label: 'Bleue',
+            customClass: 'cmd-blue',
+            desc: 'Le mode de décision est démocratique. C\'est la commande avec le plus de "voix" qui est sélectionnée.'
         }
     ]
 
     this.team = this.teams[0];
+    var controller = this;
+
+    this.openModal = function () {
+        var modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'views/modals/change-team-modal.html',
+            controller: 'robotFhacktoryChgTeamCtrl',
+            resolve: {
+                teams: function() {
+                    return controller.teams;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedTeam) {
+            controller.team = selectedTeam;
+        });
+    };
+}
+
+function RobotFhacktoryChgTeamCtrl($scope, $uibModalInstance, teams) {
+    $scope.teams = teams;
+
+    $scope.selected = {
+        item: $scope.teams[0]
+    };
+
+    $scope.ok = function () {
+        $uibModalInstance.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
 }

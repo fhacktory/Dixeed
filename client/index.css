@@ -6,6 +6,10 @@ body > .container {
     margin-top: 2em;
 }
 
+#commandContainer {
+    margin-top: 2em;
+}
+
 .cmd-component-btn {
     font-size: 5em;
     font-family: 'Glyphicons Halflings';
@@ -60,4 +64,22 @@ body > .container {
     margin-top: -.2em;
     width: 100%;
     height: 100%;
+}
+
+.cmd-component-btn.cmd-blue {
+    color: #337ab7;
+}
+
+.cmd-component-btn.cmd-red {
+    color: red;
+}
+
+.cmd-component.cmd-component-active {
+    background-color: #dff0d8;
+}
+
+.cmd-component {
+    transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -webkit-transition: all 0.5s linear;
 }

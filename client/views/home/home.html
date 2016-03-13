@@ -1,40 +1,53 @@
 <div class="row">
-    <div class="col-md-8">
-        <iframe src="https://player.twitch.tv/?channel=4lluc" frameborder="0" scrolling="no" height="378" width="620"></iframe><a href="http://www.twitch.tv/4lluc?tt_medium=live_embed&tt_content=text_link" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px;text-decoration:underline;">Watch live video from 4lluc on www.twitch.tv</a>
+    <div class="col-md-7">
+        <!-- <iframe src="https://player.twitch.tv/?channel=4lluc" frameborder="0" scrolling="no" height="378" width="620"></iframe><a href="http://www.twitch.tv/4lluc?tt_medium=live_embed&tt_content=text_link" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px;text-decoration:underline;">Watch live video from 4lluc on www.twitch.tv</a> -->
     </div>
 
-    <div class="col-md-4 form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-6 control-label">Choix de l'équipe : </label>
-            <div class="col-sm-6">
-                <select class="form-control" ng-model="$homeCtrl.team" ng-options="team.label for team in $homeCtrl.teams">
-                </select>
-            </div>
-        </div>
-        <div id="commandContainer">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="row">
-                        <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="up" id="arrowUp"></robot-fhacktory-cmd>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="left" id="arrowLeft"></robot-fhacktory-cmd>
-                        </div>
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-md-6 form-inline">
+                <div class="form-group">
+                    <label>Equipe : </label>
 
-                        <div class="col-md-6">
-                            <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="right" id="arrowRight"></robot-fhacktory-cmd>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="down" id="arrowDown"></robot-fhacktory-cmd>
-                    </div>
+                    <p class="form-control-static" ng-bind="$homeCtrl.team.label">
+                    </p>
                 </div>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-primary" ng-click="$homeCtrl.openModal()">Changer d'équipe</button>
+            </div>
+        </div>        
 
-                <div class="col-md-4">
-                    <robot-fhacktory-cmd end-point="'http://localhost:8990/action/' + $homeCtrl.team.id" action="arm" id="aButton" content="A"></robot-fhacktory-cmd>
+        <div class="panel panel-default" id="commandContainer">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="up" id="arrowUp" custom-class="{{ $homeCtrl.team.customClass }}" key="up"></robot-fhacktory-cmd>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="left" id="arrowLeft" custom-class="{{ $homeCtrl.team.customClass }}" key="left"></robot-fhacktory-cmd>
+                            </div>
+                
+                            <div class="col-md-6">
+                                <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="right" id="arrowRight" custom-class="{{ $homeCtrl.team.customClass }}" key="right"></robot-fhacktory-cmd>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+                                <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="down" id="arrowDown" custom-class="{{ $homeCtrl.team.customClass }}" key="down"></robot-fhacktory-cmd>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-4">
+                        <robot-fhacktory-cmd end-point="'http://localhost:8990/action/' + $homeCtrl.team.id" action="arm" id="aButton" content="A" custom-class="{{ $homeCtrl.team.customClass }}" key="a"></robot-fhacktory-cmd>
+                    </div>
                 </div>
             </div>
         </div>

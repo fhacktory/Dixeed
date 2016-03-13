@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h3 class="modal-title">Changer d'équipe</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6">
+            <select class="form-control" ng-options="team.label for team in teams" ng-model="selected.item">
+            </select>
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-info" ng-bind="selected.item.desc">
+            </div>
+        </div>        
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">Valider</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Annuler</button>
+</div>

@@ -12,7 +12,9 @@ component.directive('robotFhacktoryCmd', function () {
         bindToController: {
             endPoint: '=',
             action: '@',
-            content: '@?'
+            content: '@?',
+            customClass: '@?',
+            key: '@?'
         }
     };
 });
