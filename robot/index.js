@@ -22,6 +22,9 @@ var server = http.createServer(function handleRequest(request, response) {
         case '/left/':
             legoControl.left();
             break;
+        case '/arm/':
+            legoControl.arm();
+            break;
     }
 
     response.end('Coucou');

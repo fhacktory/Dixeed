@@ -9,6 +9,7 @@ exports.up = up;
 exports.down = down;
 exports.right = right;
 exports.left = left;
+exports.arm = arm;
 
 ///////////////////////////////////////////////////////////////
 
@@ -25,6 +26,7 @@ var cancellationTokenB = setInterval(function() {
 }, 10);
 
 function init() {
+
     motorA = new ev3dev.Motor(ev3dev.OUTPUT_A);
     motorB = new ev3dev.Motor(ev3dev.OUTPUT_B);
 
@@ -32,11 +34,18 @@ function init() {
     checkMotorConnected("A");
     checkMotorConnected("B");
 
+    // reset motors positions
+    motorA.reset();
+    motorB.reset();
+    motorC.reset();
+
     // enable speed regulation an set motors speed
     motorA.speedRegulationEnabled = 'on';
-    motorA.speedSp = 500;
     motorB.speedRegulationEnabled = 'on';
+    motorC.speedRegulationEnabled = 'on';
+    motorA.speedSp = 500;
     motorB.speedSp = 500;
+    motorC.speedSp = 500;
 }
 
 function checkMotorConnected (letter) {
@@ -46,13 +55,31 @@ function checkMotorConnected (letter) {
     }
 }
 
+function arm() {
+
+    // check if motors are connected
+    checkMotorConnected("C");
+
+    // set the amount of time the motor will run
+    motorC.positionSp = 100;
+
+    // stop all previous command
+    motorC.stopCommand = 'brake';
+
+    // run the motor for the amount of time specified in `time_sp`
+    motorC.command = "run-to-rel-pos";
+
+    console.log("Turn arm");
+
+}
+
 function up() {
 
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
 
-    console.log(motorB.positionSp+" "+motorA.positionSp);
+
     // set the amount of time the motor will run
     motorA.positionSp = 500;
     motorB.positionSp = 500;
@@ -65,7 +92,7 @@ function up() {
     motorA.command = "run-to-rel-pos";
     motorB.command = "run-to-rel-pos";
 
-    console.log(" Running forward the motors A and B for 180 tacho counts... ");
+    console.log("Running forward");
 
 }
 
@@ -74,7 +101,7 @@ function down() {
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
-    console.log(motorB.positionSp+" "+motorA.positionSp);
+
     // set the amount of time the motor will run
     motorA.positionSp = -500;
     motorB.positionSp = -500;
@@ -87,7 +114,7 @@ function down() {
     motorA.command = "run-to-rel-pos";
     motorB.command = "run-to-rel-pos";
 
-    console.log("Running back the motors A and B for 180 tacho counts...");
+    console.log("Running backward");
 }
 
 function left() {
@@ -95,10 +122,10 @@ function left() {
     // check if motors are connected
     checkMotorConnected("A");
     checkMotorConnected("B");
-    console.log(motorB.positionSp+" "+motorA.positionSp);
+
     // set the amount of time the motor will run
-    motorA.positionSp = 500;
-    motorB.positionSp = -500;
+    motorA.positionSp = -650;
+    motorB.positionSp = 650;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
@@ -117,10 +144,10 @@ function right() {
     checkMotorConnected("A");
     checkMotorConnected("B");
 
-    console.log(motorB.positionSp+" "+motorA.positionSp);
+
     // set the amount of time the motor will run
-    motorA.positionSp = -500;
-    motorB.positionSp = 500;
+    motorA.positionSp = 650;
+    motorB.positionSp = -650;
 
     // stop all previous command
     motorA.stopCommand = 'brake';
