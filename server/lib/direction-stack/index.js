@@ -60,7 +60,7 @@ internals.voteDemo = function voteDemo() {
     console.log('demo voted value : ' + winner);
     global.bufferTeam2.length = 0;
 
-    internals.sendToRobot('http://192.168.1.133:8990/', winner);
+    internals.sendToRobot('http://192.168.1.133:8880/', winner);
 }
 
 internals.voteRand = function voteRand() {
@@ -74,7 +74,7 @@ internals.voteRand = function voteRand() {
     console.log('rand voted value : ' + winner);
     global.bufferTeam1.length = 0;
 
-    internals.sendToRobot('http://192.168.1.134:8990/', winner);
+    internals.sendToRobot('http://192.168.1.134:8880/', winner);
 }
 
 internals.getRandomNumber = function getRandomNumber(min, max) {

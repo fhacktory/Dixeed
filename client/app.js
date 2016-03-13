@@ -93,7 +93,7 @@ function RobotFhacktoryHomeCtrl ($uibModal, $timeout) {
         });
     };
 
-    var socket = io.connect('http://localhost:8990');
+    var socket = io.connect('http://192.168.1.136:8990');
 
     socket.on('command_response', function (data) {
         controller.selectedCommand = data;
