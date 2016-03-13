@@ -3,6 +3,7 @@
 var ev3dev = require('ev3dev-lang');
 var motorA;
 var motorB;
+var motorC;
 
 exports.init = init;
 exports.up = up;
