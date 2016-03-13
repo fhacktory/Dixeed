@@ -28,7 +28,7 @@ function voteDemo() {
     election[ACTIONS.ARM] = 0;
 
     for (let voteCnt = 0; voteCnt < global.bufferTeam2.length; voteCnt++) {
-        const value = global.bufferTeam2[voteCnt].action;
+        const value = global.bufferTeam2[voteCnt];
         election[value]++;
     }
 
@@ -50,10 +50,11 @@ function voteRand() {
     if (global.bufferTeam1.length === 0) {
         return;
     }
-    
-    let randInteger = getRandomNumber(0, global.bufferTeam2.length);
-    const winner = global.bufferTeam2[randInteger];
+
+    let randInteger = getRandomNumber(0, global.bufferTeam1.length);
+    const winner = global.bufferTeam1[randInteger];
     console.log('rand voted value : ' + winner);
+    global.bufferTeam1.length = 0;
 
     // sentToRobot('', winner);
 }
