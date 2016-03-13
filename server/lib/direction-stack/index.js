@@ -9,9 +9,8 @@ global.votedValue = '';
 setInterval(vote, 2000);
 
 function vote() {
-    var winner = '';
-    var previousAction = null;
-    var election = {};
+    const election = {};
+    let winner = null;
 
     console.log('current stack : ' + global.bufferStack);
     if (global.bufferStack.length === 0) {
@@ -24,18 +23,16 @@ function vote() {
     election[DIRECTIONS.RIGHT] = 0;
     election[DIRECTIONS.LEFT] = 0;
 
-    for (var voteCnt = 0; voteCnt < global.bufferStack.length; voteCnt++) {
-        var value = global.bufferStack[voteCnt];
+    for (let voteCnt = 0; voteCnt < global.bufferStack.length; voteCnt++) {
+        const value = global.bufferStack[voteCnt];
         election[value]++;
     }
 
-    for (var action in election) {
-        if (previousAction && election[action] > election[previousAction]) {
+    winner = DIRECTIONS.UP;
+    for (let action in election) {
+        if (election[action] > election[winner]) {
             winner = action;
-        } else if (previousAction && election[action] < election[previousAction]) {
-            winner = previousAction;
         }
-        previousAction = action;
     }
 
     global.votedValue = winner;
