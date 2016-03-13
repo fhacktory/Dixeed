@@ -3,12 +3,13 @@
 const request = require('request');
 const DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
 const ACTIONS = require('../lego-endpoints/constant').ACTIONS;
+const ROBOT_REFRESH = 1000;
 
 global.bufferTeam1 = [];
 global.bufferTeam2 = [];
 
-setInterval(voteDemo, 2000);
-setInterval(voteRand, 2000);
+setInterval(voteDemo, ROBOT_REFRESH);
+setInterval(voteRand, ROBOT_REFRESH);
 
 /////////////////////////////////////////////////////////////////:
 
