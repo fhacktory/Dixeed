@@ -10,7 +10,7 @@ The matches are streamed on __Twitch.tv__ and the people control the robots from
 ## Play it!
 ![Just do it](http://i.imgur.com/KVaFuwy.gif)
 
-Access [http://192.168.1.39:9000/#/](http://192.168.1.39:9000/#/) in your browser and get on it!
+Access [http://10.0.0.18:9000/#/](http://10.0.0.18:9000/#/) in your browser and get on it!
 
 
 ## The magic behind the veil
