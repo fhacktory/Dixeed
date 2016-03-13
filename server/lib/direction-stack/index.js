@@ -4,18 +4,20 @@ const request = require('request');
 const DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
 const ACTIONS = require('../lego-endpoints/constant').ACTIONS;
 
-global.bufferStack = [];
-global.votedValue = '';
+global.bufferTeam1 = [];
+global.bufferTeam2 = [];
 
-setInterval(vote, 2000);
+setInterval(voteDemo, 2000);
+setInterval(voteRand, 2000);
 
-function vote() {
+/////////////////////////////////////////////////////////////////:
+
+function voteDemo() {
     const election = {};
     let winner = null;
 
-    console.log('current stack : ' + global.bufferStack);
-    if (global.bufferStack.length === 0) {
-        global.votedValue = '';
+    console.log('demo stack : ' + global.bufferTeam2);
+    if (global.bufferTeam2.length === 0) {
         return;
     }
 
@@ -25,8 +27,8 @@ function vote() {
     election[DIRECTIONS.LEFT] = 0;
     election[ACTIONS.ARM] = 0;
 
-    for (let voteCnt = 0; voteCnt < global.bufferStack.length; voteCnt++) {
-        const value = global.bufferStack[voteCnt];
+    for (let voteCnt = 0; voteCnt < global.bufferTeam2.length; voteCnt++) {
+        const value = global.bufferTeam2[voteCnt].action;
         election[value]++;
     }
 
@@ -37,15 +39,28 @@ function vote() {
         }
     }
 
-    global.votedValue = winner;
-    console.log('voted value : ' + winner);
-    global.bufferStack.length = 0;
+    console.log('demo voted value : ' + winner);
+    global.bufferTeam2.length = 0;
 
-    sendToRobot(winner);
+    sendToRobot('http://192.168.1.50:8880/', winner);
 }
 
-function sendToRobot(action) {
-    const host = 'http://192.168.1.50:8880/' + action + '/';
+function voteRand() {
+    console.log('rand stack : ' + global.bufferTeam1);
+
+    let randInteger = getRandomNumber(0, global.bufferTeam2.length);
+    const winner = global.bufferTeam2[randInteger];
+    console.log('rand voted value : ' + winner);
+
+    sentToRobot('', winner);
+}
+
+function getRandomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function sendToRobot(hostStr, action) {
+    const host = hostStr + action + '/';
     request(host, function(error, response, body) {
         console.log('request sent to ' + host);
     });

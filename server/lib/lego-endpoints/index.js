@@ -8,7 +8,7 @@ const ACTIONS = require('./constant').ACTIONS;
 module.exports = function register(server, options, next) {
     server.route({
         method: 'POST',
-        path: '/move',
+        path: '/move/{teamId}',
         handler: handlers.action,
         config: {
             validate: {
@@ -19,6 +19,9 @@ module.exports = function register(server, options, next) {
                         DIRECTIONS.LEFT,
                         DIRECTIONS.RIGHT
                     ]).options({ convert: true })
+                },
+                params: {
+                    teamId: Joi.number().integer().required().valid([1,2])
                 }
             }
         }
@@ -26,7 +29,7 @@ module.exports = function register(server, options, next) {
 
     server.route({
         method: 'POST',
-        path: '/action',
+        path: '/action/{teamId}',
         handler: handlers.action,
         config: {
             validate: {
@@ -34,6 +37,9 @@ module.exports = function register(server, options, next) {
                     action: Joi.string().required().lowercase().valid([
                         ACTIONS.ARM
                     ]).options({ convert: true })
+                },
+                params: {
+                    teamId: Joi.number().integer().required().valid([1,2])
                 }
             }
         }
