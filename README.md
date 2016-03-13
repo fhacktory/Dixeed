@@ -18,4 +18,6 @@ It just works!
 
 ![it is magic meme](http://www.reactiongifs.com/r/mgc.gif)
 
-The project is composed of 2 web servers. One is running directly on the robot and the other one is running on a local machine. The latter receives requests from an AngularJS 1.x client with the users' commands. Once it chose the command to run on the robot, it actually contacts the server on the robot. This server uses the NodeJS ev3 API.
+The project is composed of 2 web servers. One is running directly on the robot and the other one is running on a local machine. The latter receives requests from an AngularJS 1.x client with the users' commands. Once it chose the command to run on the robot, it actually contacts the server on it. This server uses the NodeJS ev3 API.
+
+The server chooses the red team commands from the pool selected by the team members using a rand algorithm. Regarding the blue team, the command is chosen with a "democratic" algorithm. The command having the most vote will be the one sent to the robot.
