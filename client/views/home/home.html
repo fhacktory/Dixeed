@@ -19,37 +19,45 @@
         </div>        
 
         <div class="well" id="commandContainer">
-            <!-- <div class="panel-body"> -->
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3">
-                                <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="up" id="arrowUp" custom-class="{{ $homeCtrl.team.customClass }}" key="up"></robot-fhacktory-cmd>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="left" id="arrowLeft" custom-class="{{ $homeCtrl.team.customClass }}" key="left"></robot-fhacktory-cmd>
-                            </div>
-                
-                            <div class="col-md-6">
-                                <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="right" id="arrowRight" custom-class="{{ $homeCtrl.team.customClass }}" key="right"></robot-fhacktory-cmd>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3">
-                                <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="down" id="arrowDown" custom-class="{{ $homeCtrl.team.customClass }}" key="down"></robot-fhacktory-cmd>
-                            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="up" id="arrowUp" custom-class="{{ $homeCtrl.team.customClass }}" key="up"></robot-fhacktory-cmd>
                         </div>
                     </div>
-                
-                    <div class="col-md-4">
-                        <robot-fhacktory-cmd end-point="'http://localhost:8990/action/' + $homeCtrl.team.id" action="arm" id="aButton" content="A" custom-class="{{ $homeCtrl.team.customClass }}" key="a"></robot-fhacktory-cmd>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="left" id="arrowLeft" custom-class="{{ $homeCtrl.team.customClass }}" key="left"></robot-fhacktory-cmd>
+                        </div>
+            
+                        <div class="col-md-6">
+                            <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="right" id="arrowRight" custom-class="{{ $homeCtrl.team.customClass }}" key="right"></robot-fhacktory-cmd>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
+                            <robot-fhacktory-cmd end-point="'http://localhost:8990/move/' + $homeCtrl.team.id" action="down" id="arrowDown" custom-class="{{ $homeCtrl.team.customClass }}" key="down"></robot-fhacktory-cmd>
+                        </div>
                     </div>
                 </div>
-            <!-- </div> -->
+            
+                <div class="col-md-4">
+                    <robot-fhacktory-cmd end-point="'http://localhost:8990/action/' + $homeCtrl.team.id" action="arm" id="aButton" content="A" custom-class="{{ $homeCtrl.team.customClass }}" key="a"></robot-fhacktory-cmd>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default" id="selectedAction">
+            <div class="panel-heading">
+                <h3>Commande sélectionnée</h3>
+            </div>
+
+            <div class="panel-body">
+                <span class="glyphicon" ng-class="$homeCtrl.displayCmdClass()"></span>
+            </div>
         </div>
     </div>
 </div>

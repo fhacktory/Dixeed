@@ -5,15 +5,32 @@ const DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
 const ACTIONS = require('../lego-endpoints/constant').ACTIONS;
 const ROBOT_REFRESH = 1000;
 
-global.bufferTeam1 = [];
-global.bufferTeam2 = [];
+const internals = {};
 
-setInterval(voteDemo, ROBOT_REFRESH);
-setInterval(voteRand, ROBOT_REFRESH);
+module.exports = function register(server, options, next) {
+    internals.io = require('socket.io')(server.listener);
+
+    internals.io.on('connection', function (socket) {
+        console.log('New connection!');
+    });
+
+    global.bufferTeam1 = [];
+    global.bufferTeam2 = [];
+
+    setInterval(internals.voteDemo, ROBOT_REFRESH);
+    setInterval(internals.voteRand, ROBOT_REFRESH);
+
+    next();
+};
+
+module.exports.attributes = {
+    name: 'direction-stack',
+    version: '1.0.0'
+};
 
 /////////////////////////////////////////////////////////////////:
 
-function voteDemo() {
+internals.voteDemo = function voteDemo() {
     const election = {};
     let winner = null;
 
@@ -43,28 +60,30 @@ function voteDemo() {
     console.log('demo voted value : ' + winner);
     global.bufferTeam2.length = 0;
 
-    sendToRobot('http://10.0.0.19:8880/', winner);
+    internals.sendToRobot('http://192.168.1.133:8990/', winner);
 }
 
-function voteRand() {
+internals.voteRand = function voteRand() {
     console.log('rand stack : ' + global.bufferTeam1);
     if (global.bufferTeam1.length === 0) {
         return;
     }
 
-    let randInteger = getRandomNumber(0, global.bufferTeam1.length);
+    let randInteger = internals.getRandomNumber(0, global.bufferTeam1.length);
     const winner = global.bufferTeam1[randInteger];
     console.log('rand voted value : ' + winner);
     global.bufferTeam1.length = 0;
 
-    sendToRobot('http://10.0.0.27:8880/', winner);
+    internals.sendToRobot('http://192.168.1.134:8990/', winner);
 }
 
-function getRandomNumber(min, max) {
+internals.getRandomNumber = function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-function sendToRobot(hostStr, action) {
+internals.sendToRobot = function sendToRobot(hostStr, action) {
+    internals.io.emit('command_response', action);
+
     const host = hostStr + action + '/';
     request(host, function(error, response, body) {
         console.log('request sent to ' + host);

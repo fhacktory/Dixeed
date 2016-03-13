@@ -2,14 +2,14 @@
 
 var Hapi = require('hapi');
 var server = new Hapi.Server();
-require('./lib/direction-stack');
+// require('./lib/direction-stack');
 
 module.exports = server;
 
 /////////////////////////////////////////////////////////////////////////
 
 server.connection({
-    host: '10.0.0.18',
+    host: 'localhost',
     port: '8990',
     routes: {
         cors: true
@@ -22,7 +22,8 @@ server.connection({
 //                                                                //
 ////////////////////////////////////////////////////////////////////
 server.register([
-    require('./lib/lego-endpoints')
+    require('./lib/lego-endpoints'),
+    require('./lib/direction-stack')
 ])
 
 /////////////////////////////////////////////////////////////////////////

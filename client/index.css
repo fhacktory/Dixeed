@@ -112,3 +112,12 @@ body > .container {
     -moz-transition: all 0.5s linear;
     -webkit-transition: all 0.5s linear;
 }
+
+#selectedAction .glyphicon {
+    font-size: 8em;
+    color: #3c763d;
+}
+
+#selectedAction .panel-body {
+    text-align: center;
+}

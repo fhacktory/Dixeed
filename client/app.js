@@ -17,7 +17,7 @@ app.run(Startup)
 app.controller('robotFhacktoryHomeCtrl', RobotFhacktoryHomeCtrl);
 app.controller('robotFhacktoryChgTeamCtrl', RobotFhacktoryChgTeamCtrl);
 
-RobotFhacktoryHomeCtrl.$inject = [ '$uibModal' ];
+RobotFhacktoryHomeCtrl.$inject = [ '$uibModal', '$timeout' ];
 RobotFhacktoryChgTeamCtrl.$inject = [ '$scope', '$uibModalInstance', 'teams' ];
 
 Startup.$inject = [ '$rootScope', '$state', '$stateParams' ];
@@ -55,7 +55,7 @@ function Router($stateProvider, $urlRouterProvider) {
         });
 }
 
-function RobotFhacktoryHomeCtrl ($uibModal) {
+function RobotFhacktoryHomeCtrl ($uibModal, $timeout) {
     this.teams = [
         {
             id: 1,
@@ -72,6 +72,8 @@ function RobotFhacktoryHomeCtrl ($uibModal) {
     ]
 
     this.team = this.teams[0];
+    this.selectedCommand = '';
+
     var controller = this;
 
     this.openModal = function () {
@@ -89,6 +91,34 @@ function RobotFhacktoryHomeCtrl ($uibModal) {
         modalInstance.result.then(function (selectedTeam) {
             controller.team = selectedTeam;
         });
+    };
+
+    var socket = io.connect('http://localhost:8990');
+
+    socket.on('command_response', function (data) {
+        controller.selectedCommand = data;
+
+        // $timeout(function () {
+        //     controller.selectedCommand = '';
+        // }, 1500);
+    });
+
+    this.displayCmdClass = function () {
+        if (this.selectedCommand === '') {
+            return '';
+        }
+
+        switch (this.selectedCommand) {
+            case 'up':
+            case 'down':
+            case 'left':
+            case 'right':
+                return 'glyphicon-arrow-' + this.selectedCommand;
+            case 'arm':
+                return 'glyphicon-stop'
+        }
+
+        return '';
     };
 }
 
