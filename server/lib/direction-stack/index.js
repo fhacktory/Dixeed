@@ -3,12 +3,13 @@
 const request = require('request');
 const DIRECTIONS = require('../lego-endpoints/constant').DIRECTIONS;
 const ACTIONS = require('../lego-endpoints/constant').ACTIONS;
+const ROBOT_REFRESH = 1000;
 
 global.bufferTeam1 = [];
 global.bufferTeam2 = [];
 
-setInterval(voteDemo, 2000);
-setInterval(voteRand, 2000);
+setInterval(voteDemo, ROBOT_REFRESH);
+setInterval(voteRand, ROBOT_REFRESH);
 
 /////////////////////////////////////////////////////////////////:
 
@@ -42,7 +43,7 @@ function voteDemo() {
     console.log('demo voted value : ' + winner);
     global.bufferTeam2.length = 0;
 
-    sendToRobot('http://192.168.1.50:8880/', winner);
+    sendToRobot('http://10.0.0.19:8880/', winner);
 }
 
 function voteRand() {
@@ -56,7 +57,7 @@ function voteRand() {
     console.log('rand voted value : ' + winner);
     global.bufferTeam1.length = 0;
 
-    // sentToRobot('', winner);
+    sendToRobot('http://10.0.0.27:8880/', winner);
 }
 
 function getRandomNumber(min, max) {
